@@ -67,6 +67,12 @@ body {  /*background-image: url(https://i.imgur.com/TeCMWmk.jpg?1); */
                   <h1 id="cardHeader">Create a new Schedule</h3>
                 </div>
                   <br>
+                      <div class="input-group date form-group" id="schedule_name">
+                        <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Enter name of Schedule</span>
+                      </div>
+                      <input type="text" class="form-control" id="schedule_name" name="schedule_name" placeholder="Enter Name" required />
+                      </div>
                       <div class="input-group date form-group" id="datepicker1">
                         <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-default">Enter first day of school</span>
@@ -91,9 +97,13 @@ body {  /*background-image: url(https://i.imgur.com/TeCMWmk.jpg?1); */
                       <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i><span class="count"></span></span>
                       </div>
                       <div class="row">
-                        <div class="col-9">
+                        <div class="col-12">
                           <div class="card">
                             <div class="card-body">
+                            <div class="row justify-content-md-center">
+                            <h4 id="cardHeader">Rotation Schedule</h4>
+                            <br><br>
+                            </div>
                               <div class="input-group">
                                 <div class="input-group-prepend">
                                   <span class="input-group-text" id="">Number of days in 1 rotation</span>
@@ -107,45 +117,102 @@ body {  /*background-image: url(https://i.imgur.com/TeCMWmk.jpg?1); */
                               <p></p>
                               <button type="button" class="btn btn-blue btn-block btn-sm" onclick="show_outline();">Create Outline</button>
                               <hr>
+                              <div class="row">
+                              <div class="col-6">
+                                <h5>Normal Days</h5>
                               <ul class="nav nav-tabs">
-                              <?php
-                              $day_number = 0;
-                              while($day_number < $days_in_rotation) {?>
+                                <?php
+                                $day_counter = 1;
+                                while($day_counter <= $days_in_rotation) {
+                                ?>
                                 <li class="nav-item">
-                                  <button class="tablink nav-link active btn-blue" onclick="openPage('Home', this)"><?php echo("Day ".($day_number+1)) ?></button>
-                               </li>
-                               <?php 
-                               $day_number += 1;
-                                  } ?>
-                              </ul>
-                              <div id="Home" class="tabcontent">
-                                <br>
-                                <?php 
-                                $block_number = 0;
-                                while($block_number < $blocks_in_a_day) {?>
-                                  <div class="input-group input-group-sm mb-3">
-                                  <input type="text" class="form-control col-3" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Name">
-                                  <input type="text" class="form-control col-9" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Time">
-                                </div>
-                                  <?
-                                  $block_number += 1;
+                                  <button class="tablink btn btn-light" onclick="openPage('<?php echo("Day".$day_counter) ?>', this, '#58c4ef')" id='<?php echo("Day ".$day_counter) ?>'><?php echo("Day ".$day_counter) ?></button>
+                                </li>
+                                <?php
+                                $day_counter += 1;
                                 }
                                 ?>
-                              </div>
+                              </ul>
+                                <?php
+                                $day_counter = 1;
+                                while($day_counter <= $days_in_rotation) {
+                                ?>
+                                <div id='<?php echo("Day".$day_counter) ?>' class="tabcontent">
+                                  <br>
+                                  <?php
+                                  $block_counter = 1;
+                                  while($block_counter <= $blocks_in_a_day){
+                                  ?>
+                                  <div class="input-group mb-1">
+                                    <input type="text" class="form-control" placeholder="Name">
+                                    <input type="text" class="form-control" placeholder="Time">
+                                  </div>
+                                  <?php
+                                  $block_counter += 1;
+                                  }
+                                  ?>
+                                </div>
+                                <?php
+                                $day_counter += 1;
+                                }
+                                ?>
 
-                              <div id="News" class="tabcontent">
-                                <h3>News</h3>
-                                <p>Some news this fine day!</p>
-                              </div>
+                            </div>
+                            <div class="col-6">
+                              <h5>Wednesdays</h5>
+                              <ul class="nav nav-tabs">
+                                <?php
+                                $day_counter = 1;
+                                while($day_counter <= $days_in_rotation) {
+                                ?>
+                                <li class="nav-item">
+                                  <button class="Wtablink btn btn-light" onclick="WopenPage('<?php echo("WDay".$day_counter) ?>', this, '#58c4ef')" id='<?php echo("WDay ".$day_counter) ?>'><?php echo("Day ".$day_counter) ?></button>
+                                </li>
+                                <?php
+                                $day_counter += 1;
+                                }
+                                ?>
+                              </ul>
+                                <?php
+                                $day_counter = 1;
+                                while($day_counter <= $days_in_rotation) {
+                                ?>
+                                <div id='<?php echo("WDay".$day_counter) ?>' class="Wtabcontent">
+                                  <br>
+                                  <?php
+                                  $block_counter = 1;
+                                  while($block_counter <= $blocks_in_a_day){
+                                  ?>
+                                  <div class="input-group mb-1">
+                                    <input type="text" class="form-control" placeholder="Name">
+                                    <input type="text" class="form-control" placeholder="Time">
+                                  </div>
+                                  <?php
+                                  $block_counter += 1;
+                                  }
+                                  ?>
+                                </div>
+                                <?php
+                                $day_counter += 1;
+                                }
+                                ?>
+
                             </div>
                           </div>
-                        </div>
-                        <div class="col-3">
-                          <div class="card">
-                            <div class="card-body">
-                              <h1>help</h1>
-                            </div>
                           </div>
+                          </div>
+                          <br>
+                        <div class="card">
+                        <div class="card-body">
+                          <div class="row justify-content-md-center">
+                          <h4 id="cardHeader">Special Days</h4>
+                          </div>
+                          <br>
+                      
+                          </div>
+                          </div>
+                          <br>
+                          <button class="btn btn-blue btn-block btn-lg">Save Schedule</button>
                         </div>
                       </div>
                     </div>
@@ -204,7 +271,8 @@ $(document).ready(function() {
 function show_outline() {
 location.href="createschedule.php?blocks=".concat(document.getElementById("blocks_in_a_day").value, "&days=", document.getElementById("days_in_rotation").value);
 }
-function openPage(pageName, elmnt) {
+
+function openPage(pageName, elmnt, color) {
   // Hide all elements with class="tabcontent" by default */
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
@@ -216,14 +284,46 @@ function openPage(pageName, elmnt) {
   tablinks = document.getElementsByClassName("tablink");
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].style.backgroundColor = "";
+    tablinks[i].style.color = "";
   }
 
   // Show the specific tab content
   document.getElementById(pageName).style.display = "block";
+
+  // Add the specific color to the button used to open the tab content
+  elmnt.style.backgroundColor = color;
+  elmnt.style.color = "white";
 }
 
 // Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
+document.getElementById("Day 1").click();
+
+function WopenPage(pageName, elmnt, color) {
+  // Hide all elements with class="tabcontent" by default */
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("Wtabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Remove the background color of all tablinks/buttons
+  tablinks = document.getElementsByClassName("Wtablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+    tablinks[i].style.color = "";
+  }
+
+  // Show the specific tab content
+  document.getElementById(pageName).style.display = "block";
+
+  // Add the specific color to the button used to open the tab content
+  elmnt.style.backgroundColor = color;
+  elmnt.style.color = "white";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("WDay 1").click();
+
     </script>
   </div>
   </div>
