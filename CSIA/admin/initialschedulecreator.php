@@ -1,6 +1,7 @@
 <?php
 include 'database_inc.php';
 
+$schedule_name = "Sample Schedual 1"; // INPUT: name of schedule
 $first_day_raw = "2020-08-18"; // INPUT: first day of school
 $last_day_raw = "2021-06-18"; // INPUT: last day of school
 $no_school_dates = array("2020-12-20", "2020-12-21", "2020-12-22", "2020-12-23", "2020-12-24", "2020-12-25", "2020-12-26", "2020-12-27", "2020-12-28", "2020-12-29", "2020-12-30", "2020-12-31", "2021-01-01", "2021-01-02", "2021-01-03", "2021-01-04", "2021-01-05", "2021-01-06", "2021-01-07", "2021-01-08"); // INPUT: array of dates of all holidays and days off
@@ -106,7 +107,6 @@ foreach($final_school_schedual as $day) {
 	$i += 1;
 }
 
-$name = "Sample Schedual 1";
 $serializedarray = serialize($final_school_schedual);
 
 date_default_timezone_set("Europe/Berlin");
@@ -116,7 +116,7 @@ print_r($blocks);
 $serializedarray_blocks = serialize($blocks);
 
 $result = mysqli_query($connect,
-    "INSERT INTO `schedules` (`id`, `name`, `serializedarray`, `ready`, `createddate`, `updateddate`, `blocks`) VALUES (NULL, '$name', '$serializedarray', '0', '$current_time_stamp', '$current_time_stamp', '$serializedarray_blocks');"
+    "INSERT INTO `schedules` (`id`, `name`, `serializedarray`, `ready`, `createddate`, `updateddate`, `blocks`) VALUES (NULL, '$schedule_name', '$serializedarray', '0', '$current_time_stamp', '$current_time_stamp', '$serializedarray_blocks');"
 );
 
 ?>
